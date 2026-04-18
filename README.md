@@ -12,7 +12,7 @@ Built using cutting-edge technologies like **React, Firebase, and Vite**, the ap
 
 ---
 
-## ✨ Features
+## ✨ Features 
 
 ### 💰 Smart Expense Tracking
 
