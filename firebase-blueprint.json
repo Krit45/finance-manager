@@ -1,0 +1,59 @@
+{
+  "entities": {
+    "User": {
+      "title": "User Profile",
+      "description": "Stores user-specific settings and profile information.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "description": "Unique identifier for the user." },
+        "email": { "type": "string", "format": "email", "description": "User's email address." },
+        "displayName": { "type": "string", "description": "User's display name." },
+        "currency": { "type": "string", "description": "Preferred currency symbol (e.g., $, ₹, €)." },
+        "monthlyBudget": { "type": "number", "description": "Total monthly budget limit." },
+        "theme": { "type": "string", "enum": ["light", "dark"], "description": "User's UI theme preference." }
+      },
+      "required": ["uid", "email"]
+    },
+    "Transaction": {
+      "title": "Financial Transaction",
+      "description": "Represents an income or expense entry.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "description": "Owner's user ID." },
+        "amount": { "type": "number", "description": "Transaction amount." },
+        "type": { "type": "string", "enum": ["income", "expense"], "description": "Type of transaction." },
+        "category": { "type": "string", "description": "Category name or ID." },
+        "date": { "type": "string", "format": "date-time", "description": "Date of transaction (ISO string)." },
+        "note": { "type": "string", "description": "Optional note for the transaction." },
+        "isRecurring": { "type": "boolean", "description": "Whether the transaction repeats monthly." }
+      },
+      "required": ["uid", "amount", "type", "category", "date"]
+    },
+    "Category": {
+      "title": "Transaction Category",
+      "description": "Defines categories for transactions.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "description": "Category name." },
+        "icon": { "type": "string", "description": "Lucide icon name." },
+        "color": { "type": "string", "description": "Tailwind color class." },
+        "type": { "type": "string", "enum": ["income", "expense", "both"], "description": "Applicable transaction types." }
+      },
+      "required": ["name", "icon", "color"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profile data."
+    },
+    "/transactions/{transactionId}": {
+      "schema": "Transaction",
+      "description": "All financial transactions."
+    },
+    "/categories/{categoryId}": {
+      "schema": "Category",
+      "description": "Global or user-defined categories."
+    }
+  }
+}
