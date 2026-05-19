@@ -80,18 +80,6 @@ Create a `.env` file and add:
 GEMINI_API_KEY=your_api_key_here
 ```
 
-Also configure Firebase using:
-
-```json
-{
-  "projectId": "finance-92fe1"
-}
-```
-
-(Your Firebase config is already set up )
-
----
-
 ## 🚀 Run Locally
 
 ```bash
